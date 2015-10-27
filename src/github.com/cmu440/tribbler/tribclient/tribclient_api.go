@@ -14,7 +14,7 @@ type TribClient interface {
 	RemoveSubscription(userID, targetUser string) (tribrpc.Status, error)
 	GetTribbles(userID string) ([]tribrpc.Tribble, tribrpc.Status, error)
 	GetTribblesBySubscription(userID string) ([]tribrpc.Tribble, tribrpc.Status, error)
-	PostTribble(userID, contents string) (tribrpc.Status, error)
+	PostTribble(userID, contents string) (tribrpc.PostTribbleReply, error)
 	DeleteTribble(userID, postKey string) (tribrpc.Status, error)
 	Close() error
 }

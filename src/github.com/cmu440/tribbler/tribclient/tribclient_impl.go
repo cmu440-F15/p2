@@ -80,13 +80,13 @@ func (tc *tribClient) doTrib(funcName, userID string) ([]tribrpc.Tribble, tribrp
 	return reply.Tribbles, reply.Status, nil
 }
 
-func (tc *tribClient) PostTribble(userID, contents string) (tribrpc.Status, error) {
+func (tc *tribClient) PostTribble(userID, contents string) (tribrpc.PostTribbleReply, error) {
 	args := &tribrpc.PostTribbleArgs{UserID: userID, Contents: contents}
 	var reply tribrpc.PostTribbleReply
 	if err := tc.client.Call("TribServer.PostTribble", args, &reply); err != nil {
-		return 0, err
+		return reply, err
 	}
-	return reply.Status, nil
+	return reply, nil
 }
 
 func (tc *tribClient) DeleteTribble(userID, postKey string) (tribrpc.Status, error) {

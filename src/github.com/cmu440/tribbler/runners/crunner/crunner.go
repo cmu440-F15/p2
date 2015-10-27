@@ -106,8 +106,8 @@ func main() {
 			printTribbles(tribbles)
 		}
 	case "tp": // tribble post
-		status, err := client.PostTribble(flag.Arg(1), flag.Arg(2))
-		printStatus(ci.funcname, status, err)
+		reply, err := client.PostTribble(flag.Arg(1), flag.Arg(2))
+		printStatus(ci.funcname, reply.Status, err)
 	}
 }
 
