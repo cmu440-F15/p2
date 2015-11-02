@@ -324,7 +324,7 @@ func testGetListError() {
 // Handle get list error reply status
 func testGetListErrorStatus() {
 	pc.Reset()
-	pc.OverrideStatus(storagerpc.ItemNotFound)
+	pc.OverrideStatus(storagerpc.KeyNotFound)
 	defer pc.OverrideOff()
 	_, err := ls.GetList("keylist:2")
 	if checkError(err, true) {
