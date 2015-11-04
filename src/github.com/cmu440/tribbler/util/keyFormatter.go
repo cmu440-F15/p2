@@ -6,6 +6,8 @@ import (
 	"time"
 )
 
+var randGen = rand.New(rand.NewSource(time.Now().UnixNano()))
+
 // format keys for User
 // example: roc => roc:usrid
 func FormatUserKey(userID string) string {
@@ -22,9 +24,8 @@ func FormatSubListKey(userID string) string {
 // example roc make a post => roc:post_time_srvId (time and srvId in %x)
 // srvId is a random number to break ties for post id, not perfect but will work with very high probability.
 // If it turns out to be not unique, call this function again to generate a new one.
-func FormatPostKey(userID string, postTime int64) string {
-	return fmt.Sprintf("%s:post_%x_%x", userID, postTime,
-		rand.New(rand.NewSource(time.Now().Unix())))
+func FormatPostKey(userID string, timeNano int64) string {
+	return fmt.Sprintf("%s:post_%x_%x", userID, timeNano, randGen.Uint32)
 }
 
 // format key to associate with a user's list for tribble keys
