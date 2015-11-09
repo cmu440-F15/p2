@@ -25,7 +25,7 @@ func FormatSubListKey(userID string) string {
 // srvId is a random number to break ties for post id, not perfect but will work with very high probability.
 // If it turns out to be not unique, call this function again to generate a new one.
 func FormatPostKey(userID string, timeNano int64) string {
-	return fmt.Sprintf("%s:post_%x_%x", userID, timeNano, randGen.Uint32)
+	return fmt.Sprintf("%s:post_%x_%x", userID, timeNano, randGen.Uint32())
 }
 
 // format key to associate with a user's list for tribble keys
